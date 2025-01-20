@@ -1,0 +1,59 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card login-card">
+        <div class="card-body">
+            <h3 class="card-title text-center mb-4">Login</h3>
+            <form #loginForm="ngForm" (ngSubmit)="handleFormSubmit(loginForm)">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input 
+                    type="email" 
+                    class="form-control" 
+                    id="email" 
+                    placeholder="Enter email" 
+                    required
+                    name="userEmail"
+                    [(ngModel)]="formValues.email"
+                    #userEmail="ngModel"
+                    pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                    >
+                </div>
+                @if(userEmail.invalid && userEmail.touched){
+                    @if (userEmail.hasError('required')) {
+                        <div id="recipeHelp" class="form-text text-danger">Required</div>   
+                    }
+                }
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input 
+                    type="password" 
+                    class="form-control" 
+                    id="password" 
+                    placeholder="Enter password" 
+                    required
+                    minlength="8"
+                    [(ngModel)]="formValues.password"
+                    name="userPassword"
+                    #userPassword="ngModel"
+                    >
+                    @if(userPassword.invalid && userPassword.touched){
+                        @if(userPassword.hasError('required')){
+                        <div id="recipeHelp" class="form-text text-danger">Required</div>
+                        } @else if(userPassword.errors?.['minlength']){
+                        <div id="recipeHelp" class="form-text text-danger">Min length is 10</div>
+                        } 
+                    }
+                </div>
+                <div class="d-grid">
+                    <button 
+                    type="submit"
+                     class="btn btn-primary"
+                     [disabled]="loginForm.invalid"
+                     (click)="handleRedirect()">Login</button>
+                </div>
+                <div class="text-center mt-3">
+                    <p class="mb-0">Don't have an account? <a routerLink="/register" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" class="text-decoration-none">Register</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

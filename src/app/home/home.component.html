@@ -1,0 +1,8 @@
+<div class="container my-5">
+    <div class="row row-cols-1 row-cols-md-5 g-2">
+      @for (product of productsList; track product.id) {
+      <app-item [product1]="product"></app-item>
+      }
+    </div>
+  </div>
+  
