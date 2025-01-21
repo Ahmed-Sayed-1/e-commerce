@@ -20,8 +20,9 @@ export class ItemComponent {
 handleRedirect(id: number){
   this.router.navigate(['/item-page' , id])
 }
-handleRedirect1() {
-  this.counterService.setCounter(this.counter + 1)  
+handleRedirect1(product1:DateItemTs) {
+  this.counterService.setCounter(this.counter + 1) 
+  this.counterService.setproudcts(this.product1) 
   }
 }
 
