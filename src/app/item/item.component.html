@@ -12,8 +12,10 @@
         <div class="card-body">
           <h5 class="card-title">{{product1.title}} {{product1.price}}$</h5>
           <p class="card-text">{{product1.description}}</p>
-
-          <button class="add-to-cart-btn" (click)="handleRedirect(product1.id)">Add to Cart</button>
+          <div class="d-flex">
+            <button class="add-to-cart-btn" (click)="handleRedirect(product1.id)">Add to Cart</button>
+            <button class="add-to-cart-btn" (click)="handleRedirect1()">Add to Cart</button>  
+          </div>
         </div>
       </div>
     </div>

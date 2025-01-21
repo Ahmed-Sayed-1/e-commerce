@@ -95,9 +95,9 @@
                   <div id="recipeHelp" class="form-text text-danger">Required</div>
                 }
               }
-              @if (registerForm.errors?.['passwordMismatch'] && formControls['confirmPassword'].touched) {
-                <div id="recipeHelp" class="form-text text-danger">Passwords do not match.</div>
-              }
+              @if (registerForm.errors?.['passwordMismatch']) {
+                    <div id="recipeHelp" class="form-text text-danger">Passwords do not match.</div>
+                  }
             </div>
   
             <div class="d-grid">
