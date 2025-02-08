@@ -29,32 +29,3 @@ export class HomeComponent implements OnInit {
   }
  
 }
-/* 
-import { Component } from '@angular/core';
-import { RecipeCardComponent } from '../recipe-card/recipe-card.component';
-import { Recipe } from '../types/recipe';
-import { RecipesRequestsService } from '../services/recipes-requests.service';
-@Component({
-  selector: 'app-recipes-list',
-  imports: [RecipeCardComponent],
-  templateUrl: './recipes-list.component.html',
-  styleUrl: './recipes-list.component.css',
-})
-export class RecipesListComponent {
-  recipes: any = [];
-  sortOrder : string = 'desc'
-  constructor(private recipesRequestsService: RecipesRequestsService) {}
-
-  ngOnInit() {
-    this.recipesRequestsService
-      .getRecipesList(this.sortOrder)
-      .subscribe((res) => (this.recipes = res.recipes));
-  }
-
-  receivedFromChild(id: number) {
-    console.log('FROM PARENT', id);
-    this.recipes = this.recipes.filter((recipe: any) => recipe.id !== id);
-  }
-}
-
-*/

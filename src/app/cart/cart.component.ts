@@ -11,15 +11,14 @@ import { DateItemTs } from '../date-item.ts';
 })
 export class CartComponent {
   counter  :number=0;
-  proudcts : DateItemTs[]=[];
+  products : DateItemTs[]=[];
   proudct1 :{ p: DateItemTs , c : number}[]=[];
   proudct2 :{ id: number , c : number}[]=[];
   totalPrice :number = 0 ;
   productService = inject( RequestDateApiService )
-  // amount=1;
   constructor(private counterService: CounterService,  private requestDateApiService: RequestDateApiService) {}
   ngOnInit() {
-    this.counterService.getproudcts().subscribe((res) => (this.proudcts = Array.from(res)));
+    this.counterService.getproudcts().subscribe((res) => (this.products = Array.from(res)));
     this.counterService.getCounter().subscribe((res) => (this.counter = res));
     this.counterService.getproduct().subscribe((res) => {
       res.forEach(item => {
@@ -32,37 +31,26 @@ export class CartComponent {
         );
       });
     });
-    // this.proudct1 = this.proudcts.map((e) => ({
-    //   p: e,
-    //   c: 1
-    // }));
-    // for (let index = 0; index < this.proudct1.length; index++) {
-    //   this.totalPrice+=this.proudct1[index].p.price*this.proudct1[index].c;
-      
-    // }
-    console.log(this.proudcts);
+    
+    console.log(this.products);
   }
   inc(l: { p: DateItemTs; c: number; }) {
     this.counterService.setCounter(this.counter+1);
-    // const product = this.proudct1.find((e) => e.p.id === l.p.id);
-    // if (product) {
-    //   product.c++;
-    // }
-    // const transformedProducts = this.proudct1.map(item => ({ id: item.p.id, counter: item.c }));
-    // this.counterService.setproduct(transformedProducts);
-    
     l.c++;
     this.totalPrice+=l.p.price;
     }
   dec(l: { p: DateItemTs; c: number; }){
     this.counterService.setCounter(this.counter-1);
-    // const product = this.proudct1.find((e) => e.p.id === l.p.id);
-    // if (product) {
-    //   product.c--;
-    // }
-    // const transformedProducts = this.proudct1.map(item => ({ id: item.p.id, counter: item.c }));
-    // this.counterService.setproduct(transformedProducts);
     l.c--;
     this.totalPrice-=l.p.price;
   }
+  del(l: { p: DateItemTs; c: number }) {
+    this.counterService.setCounter(this.counter - l.c);
+    this.totalPrice -= l.p.price * l.c;
+    this.products = this.products.filter(item => item.id !== l.p.id);
+    this.proudct1 = this.proudct1.filter(item => item.p.id !== l.p.id);
+    this.counterService.delProudcts(l.p);
+    this.counterService.delproduct({ id: l.p.id, counter: l.c });
+  }
+  
 }

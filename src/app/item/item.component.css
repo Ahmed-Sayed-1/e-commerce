@@ -14,3 +14,21 @@
   .add-to-cart-btn:hover {
     background-color: #f0f0f0;
   }  
+  @media (max-width: 768px) {
+    .card-group {
+      flex-direction: column;
+    }
+  
+    .card {
+      margin-bottom: 20px;
+    }
+  
+    .add-to-cart-btn {
+      flex: 1;
+      margin: 5px;
+    }
+  
+    .d-flex {
+      flex-direction: column;
+    }
+  }

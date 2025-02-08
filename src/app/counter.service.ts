@@ -32,6 +32,7 @@ export class CounterService {
     this.product.next(list);
 
   }
+ 
   setCounter(newCounterVal : number){
     this.counter.next(newCounterVal);
   }
@@ -43,4 +44,15 @@ export class CounterService {
     currentProducts.add(newproudctsVal);
     this.proudcts.next(currentProducts);
   }
+  delproduct(rmItem: { id: number; counter: number }) {
+    const currentProducts = this.product.value.filter(item => item.id !== rmItem.id);
+    this.product.next(currentProducts); 
+  }
+  
+  delProudcts(newproudctsVal: DateItemTs) {
+    const currentProducts = this.proudcts.value;
+    currentProducts.delete(newproudctsVal); 
+    this.proudcts.next(new Set(currentProducts));
+  }
+  
 }
